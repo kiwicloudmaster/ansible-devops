@@ -63,8 +63,6 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-manage-roks/">Manage on IBM Cloud</a>
                     </li>
                 </ul>
@@ -78,32 +76,36 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_install_case/">airgap_install_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas_install/">bas_install</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cos_setup/">cos_setup</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh/">cp4d_db2wh</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install/">cp4d_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install_services/">cp4d_install_services</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_sls/">gencfg_sls</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../install_operator/">install_operator</a>
                     </li>
@@ -120,6 +122,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_mas_deps/">ocp_setup_mas_deps</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_ocs/">ocp_setup_ocs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ocp_verify/">ocp_verify</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../sls_install/">sls_install</a>
                     </li>
@@ -151,7 +155,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_install/">suite_install</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -204,9 +212,10 @@
 <p>This mode will create entries using a subdomain. It allows you to have multiple MAS instances using same CIS service. e.g: dev.mas.whirlpool.com, where 'dev' is the subdomain.</p>
 <h4 id="webhook">Webhook<a class="headerlink" href="#webhook" title="Permanent link"></a></h4>
 <p>The Webhook Task will deploy a cert-manager webhook for CIS integration.  The webhook is responsible for managent the certificate challenge requests from letsencrypt and CIS.  This task will also create two ClusterIssuers by default, pointing to Staging &amp; Production LetsEncrypt servers.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>We need to support a seperate <code>cis_apikey</code> property, because the API key provided will be stored in a secret in the cluster used by the webhook to create challenge request files in your DNS. We should support the ability to set the API key used here seperate from the main IBMCloud API key used elsewhere so that it can be restricted to only the permissions required by CIS.</p>
+<div class="admonition note">
+<p class="admonition-title">Note</p>
+<p>There are issues with how cert-manager works with LetsEncrypt staging servers. We end up with a secret for the certificate that doesn't contain the LetsEncrypt CA; but the staging service does not use a well known cert, so we end up with MAS unable to trust the certificates generated by LetsEncrypt staging.</p>
+<p>At present there is no workaround for this, so do not use the LetsEncrypt staging certificate issuer.</p>
 </div>
 <h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link"></a></h2>
 <p>TODO: Finish documentation</p>
@@ -233,8 +242,9 @@
     cis_crn: &quot;{{ lookup('env', 'CIS_CRN') }}&quot;
     # Domain prefix is whatever you want to append to your DNS entry to make it unique
     cis_subdomain: &quot;{{ lookup('env', 'CIS_SUBDOMAIN') }}&quot;
-    # generate your apikey in IBM Cloud
-    ibmcloud_apikey: &quot;{{ lookup('env', 'IBMCLOUD_APIKEY') }}&quot;
+    # generate a Service ID apikey in IBM Cloud for strict access to the 'Internet Services` service with
+    # an 'Access Policy' of Editor/Manager
+    cis_apikey: &quot;{{ lookup('env', 'CIS_APIKEY') | default(lookup('env', 'IBMCLOUD_APIKEY'), true) }}&quot;
 
     # Email used register letsencrypt certificates and receive cert notifications
     cis_email: &quot;{{ lookup('env', 'CIS_EMAIL') }}&quot;

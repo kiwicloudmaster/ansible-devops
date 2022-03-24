@@ -63,8 +63,6 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../lite-manage-roks/">Manage on IBM Cloud</a>
                     </li>
                 </ul>
@@ -72,29 +70,13 @@
                 <ul class="current">
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">OCP Playbooks</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#roks">ROKS</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#required-environment-variables">Required environment variables</a>
+    <li class="toctree-l2"><a class="reference internal" href="#provision">Provision</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#optional-environment-variables">Optional environment variables</a>
+    <li class="toctree-l2"><a class="reference internal" href="#deprovision">Deprovision</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#provision">Provision</a>
+    <li class="toctree-l2"><a class="reference internal" href="#configure">Configure</a>
     </li>
-    <li class="toctree-l3"><a class="reference internal" href="#deprovision">Deprovision</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#quickburn">QuickBurn</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#required-environment-variables_1">Required environment variables</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#optional-environment-variables_1">Optional environment variables</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#provision_1">Provision</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#deprovision_1">Deprovision</a>
-    </li>
-        </ul>
+    <li class="toctree-l2"><a class="reference internal" href="#verify">Verify</a>
     </li>
     </ul>
                     </li>
@@ -104,32 +86,36 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_install_case/">airgap_install_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/amqstreams/">amqstreams</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/bas_install/">bas_install</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cos_setup/">cos_setup</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh/">cp4d_db2wh</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_install/">cp4d_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_install_services/">cp4d_install_services</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/gencfg_sls/">gencfg_sls</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/install_operator/">install_operator</a>
                     </li>
@@ -147,6 +133,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/ocp_setup_ocs/">ocp_setup_ocs</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/ocp_verify/">ocp_verify</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/sls_install/">sls_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_app_configure/">suite_app_configure</a>
@@ -159,7 +147,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_install/">suite_install</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -203,81 +195,51 @@
             <div class="section">
               
                 <h1 id="ocp-playbooks">OCP Playbooks<a class="headerlink" href="#ocp-playbooks" title="Permanent link"></a></h1>
-<h2 id="roks">ROKS<a class="headerlink" href="#roks" title="Permanent link"></a></h2>
-<p>Provide intro ...</p>
-<h3 id="required-environment-variables">Required environment variables<a class="headerlink" href="#required-environment-variables" title="Permanent link"></a></h3>
-<ul>
-<li><code>IBMCLOUD_APIKEY</code> Short statement</li>
-<li><code>CLUSTER_NAME</code> Short statement</li>
-<li><code>OCP_VERSION</code> Short statement</li>
-</ul>
-<h3 id="optional-environment-variables">Optional environment variables<a class="headerlink" href="#optional-environment-variables" title="Permanent link"></a></h3>
-<ul>
-<li><code>ROKS_ZONE</code> Short statement</li>
-<li><code>ROKS_FLAVOR</code> Short statement</li>
-<li><code>ROKS_WORKERS</code> Short statement</li>
-<li><code>ROKS_FLAGS</code> Short statement</li>
-<li><code>W3_USERNAME</code> This is required if you want to install the pre-release MAS operator catalogs</li>
-<li><code>ARTIFACTORY_APIKEY</code> This is required if you want to install the pre-release MAS operator catalogs</li>
-</ul>
-<h3 id="provision">Provision<a class="headerlink" href="#provision" title="Permanent link"></a></h3>
-<p>As part of provisioning on IBM Cloud:</p>
-<ul>
-<li>The <strong>IBM operator catalog</strong> will be installed</li>
-<li>MAS development catalogs will be installed if <code>W3_USERNAME</code> and <code>ARTIFACTORY_APIKEY</code> environment variables are <strong>both</strong> defined</li>
-<li><a href="https://cert-manager.io">Certificate manager</a> and <a href="https://github.com/redhat-developer/service-binding-operator">service binding</a> operators will be installed at cluster scope</li>
-<li><a href="https://docs.openshift.com/container-platform/4.6/monitoring/enabling-monitoring-for-user-defined-projects.html#enabling-monitoring-for-user-defined-projects_enabling-monitoring-for-user-defined-projects">Monitoring for user-defined projects</a> will be enabled in the cluster</li>
-</ul>
-<pre><code class="language-bash">export VAR_NAME=xxx
-export VAR_NAME=xxx
+<h2 id="provision">Provision<a class="headerlink" href="#provision" title="Permanent link"></a></h2>
+<p>Refer to the <a href="../../roles/ocp_provision/">ocp_provision</a> role documentation for more information.</p>
+<pre><code class="language-bash">export CLUSTER_NAME=masinst1
+export OCP_VERSION=&quot;4.8_openshift&quot;
+
+export IBMCLOUD_APIKEY=xxx
 
 ansible-playbook playbooks/ocp/provision-roks.yml
 </code></pre>
-<h3 id="deprovision">Deprovision<a class="headerlink" href="#deprovision" title="Permanent link"></a></h3>
-<pre><code class="language-bash">export VAR_NAME=xxx
-export VAR_NAME=xxx
-
-ansible-playbook playbooks/ocp/deprovision-roks.yml
-</code></pre>
-<h2 id="quickburn">QuickBurn<a class="headerlink" href="#quickburn" title="Permanent link"></a></h2>
-<p>Provide intro ...</p>
-<h3 id="required-environment-variables_1">Required environment variables<a class="headerlink" href="#required-environment-variables_1" title="Permanent link"></a></h3>
-<ul>
-<li><code>FYRE_USERNAME</code> Short statement</li>
-<li><code>FYRE_APIKEY</code> Short statement</li>
-<li><code>FYRE_PRODUCT_ID</code> Short statement</li>
-<li><code>CLUSTER_NAME</code> Short statement</li>
-<li><code>OCP_VERSION</code> Short statement</li>
-</ul>
-<h3 id="optional-environment-variables_1">Optional environment variables<a class="headerlink" href="#optional-environment-variables_1" title="Permanent link"></a></h3>
-<ul>
-<li><code>FYRE_CLUSTER_SIZE</code> Short statement</li>
-<li><code>W3_USERNAME</code> This is required if you want to install the pre-release MAS operator catalogs</li>
-<li><code>ARTIFACTORY_APIKEY</code> This is required if you want to install the pre-release MAS operator catalogs</li>
-</ul>
-<h3 id="provision_1">Provision<a class="headerlink" href="#provision_1" title="Permanent link"></a></h3>
-<p>As part of provisioning on QuickBurn:</p>
-<ul>
-<li>The <strong>IBM operator catalog</strong> and <strong>IBM common services catalog</strong> will be installed</li>
-<li>MAS development catalogs will be installed if <code>W3_USERNAME</code> and <code>ARTIFACTORY_APIKEY</code> environment variables are <strong>both</strong> defined</li>
-<li><a href="https://cert-manager.io">Certificate manager</a> and <a href="https://github.com/redhat-developer/service-binding-operator">service binding</a> operators will be installed at cluster scope</li>
-<li><a href="https://docs.openshift.com/container-platform/4.6/monitoring/enabling-monitoring-for-user-defined-projects.html#enabling-monitoring-for-user-defined-projects_enabling-monitoring-for-user-defined-projects">Monitoring for user-defined projects</a> will be enabled in the cluster</li>
-<li><a href="https://www.redhat.com/en/resources/quay-overview">OpenShift Container Storage</a> will be configured in the cluster</li>
-</ul>
-<pre><code class="language-bash">export FYRE_USERNAME=xxx
-export FYRE_APIKEY=xxx
-export FYRE_PRODUCT_ID=225
-export CLUSTER_NAME=xxx
+<pre><code class="language-bash">export CLUSTER_NAME=masinst1
 export OCP_VERSION=4.6.16
+
+export FYRE_USERNAME=xxx
+export FYRE_PASSWORD=xxx
+export FYRE_PRODUCT_ID=xxx
 
 ansible-playbook playbooks/ocp/provision-quickburn.yml
 </code></pre>
-<h3 id="deprovision_1">Deprovision<a class="headerlink" href="#deprovision_1" title="Permanent link"></a></h3>
-<pre><code class="language-bash">export FYRE_USERNAME=xxx
-export FYRE_APIKEY=xxx
-export CLUSTER_NAME=xxx
+<h2 id="deprovision">Deprovision<a class="headerlink" href="#deprovision" title="Permanent link"></a></h2>
+<p>Refer to the <a href="../../roles/ocp_deprovision/">ocp_deprovision</a> role documentation for more information.</p>
+<p><strong>TODO: Update the role doc as it's rubbish atm</strong></p>
+<pre><code class="language-bash">export CLUSTER_NAME=masinst1
+export IBMCLOUD_APIKEY=xxx
+
+ansible-playbook playbooks/ocp/deprovision-roks.yml
+</code></pre>
+<pre><code class="language-bash">export CLUSTER_NAME=masinst1
+export FYRE_USERNAME=xxx
+export FYRE_PASSWORD=xxx
 
 ansible-playbook playbooks/ocp/deprovision-quickburn.yml
+</code></pre>
+<h2 id="configure">Configure<a class="headerlink" href="#configure" title="Permanent link"></a></h2>
+<p>Refer to the <a href="../../roles/ocp_setup_mas_deps/">ocp_setup_mas_deps</a> role documentation for more information.</p>
+<p><strong>TODO: Provide example (and update the role doc as it's rubbish atm)</strong></p>
+<pre><code class="language-bash">export VAR1=xxx
+
+ansible-playbook playbooks/ocp/configure-ocp.yml
+</code></pre>
+<h2 id="verify">Verify<a class="headerlink" href="#verify" title="Permanent link"></a></h2>
+<p>Refer to the <a href="../../roles/ocp_verify/">ocp_verify</a> role documentation for more information.</p>
+<p><strong>TODO: Provide example (and update the role doc as it's rubbish atm)</strong></p>
+<pre><code class="language-bash">export VAR1=xxx
+
+ansible-playbook playbooks/ocp/verify-roks.yml
 </code></pre>
               
             </div>

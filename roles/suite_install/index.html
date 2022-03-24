@@ -63,8 +63,6 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-manage-roks/">Manage on IBM Cloud</a>
                     </li>
                 </ul>
@@ -78,32 +76,36 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_install_case/">airgap_install_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas_install/">bas_install</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cos_setup/">cos_setup</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh/">cp4d_db2wh</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install/">cp4d_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install_services/">cp4d_install_services</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_sls/">gencfg_sls</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../install_operator/">install_operator</a>
                     </li>
@@ -120,6 +122,8 @@
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_mas_deps/">ocp_setup_mas_deps</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_ocs/">ocp_setup_ocs</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ocp_verify/">ocp_verify</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../sls_install/">sls_install</a>
                     </li>
@@ -141,7 +145,11 @@
     </li>
     </ul>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -185,7 +193,7 @@
             <div class="section">
               
                 <h1 id="suite_install">suite_install<a class="headerlink" href="#suite_install" title="Permanent link"></a></h1>
-<p>TODO: Summarize role</p>
+<p>This role install Maximo Application Suite. It internally resolve the namespace based on the <code>mas_instance_id</code> as <code>mas-{mas_instance_id}-core</code>. By default this role install MAS Operator using Manual Upgrade Strategy. Set <code>MAS_UPGRADE_STRATEGY</code> environment variable to Automatic to override it. In the <code>Manual</code> upgrade mode, IBM Common Services operators requested by MAS will inherit the upgrade strategy from MAS and their pending install plans approved.</p>
 <h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link"></a></h2>
 <ul>
 <li><code>mas_catalog_source</code> Defines the catalog to be used to install MAS. You can set it to      ibm-operator-catalog for release install or ibm-mas-operators for development</li>
@@ -198,23 +206,17 @@
 <li><code>mas_icr_cpopen</code> Defines the registry for non entitled images, such as operators. Set this to <code>icr.io/cpopen</code> when installing release version of MAS or <code>wiotp-docker-local.artifactory.swg-devops.com</code> for dev</li>
 <li><code>mas_entitlement_username</code> Username for entitled registry. This username will be used to create the image pull secret. Set to <code>cp</code> when installing release or use your <code>w3Id</code> for dev.</li>
 <li><code>mas_entitlement_key</code> API Key for entitled registry. This password will be used to create the image pull secret. Set to with IBM entitlement key when installing release or use your artifactory <code>apikey</code> for dev.</li>
-<li><code>mas_config</code> List of configuration files to be applied to configure the MAS installation</li>
+<li><code>mas_config_dir</code> Directory containing configuration files (<code>*.yaml</code> and <code>*.yml</code>) to be applied to the MAS installation.  Intended for creating the various MAS custom resources to configure the suite post-install, but can be used to apply any kubernetes resource you need to customize any aspect of your cluster.</li>
+<li><code>certManager.namespace</code> The namespace containing the cert-manager to be used by MAS</li>
+<li><code>mas_upgrade_strategy</code> The Upgrade strategy for MAS Operator. Default is set to Automatic</li>
 </ul>
 <h2 id="example-playbook">Example Playbook<a class="headerlink" href="#example-playbook" title="Permanent link"></a></h2>
 <pre><code class="language-yaml">- hosts: localhost
   any_errors_fatal: true
   vars:
-    # Which MAS channel to subscribe to
-    mas_channel: &quot;{{ lookup('env', 'MAS_CHANNEL') | default('8.x', true) }}&quot;
-
-    # MAS configuration
-    custom_domain: &quot;{{ lookup('env', 'MAS_DOMAIN') | default(None)}}&quot;
-    mas_instance_id: &quot;{{ lookup('env', 'MAS_INSTANCE_ID') }}&quot;
-
-    # MAS configuration - Entitlement
-    mas_entitlement_key: &quot;{{ lookup('env', 'MAS_ENTITLEMENT_KEY') }}&quot;
-
-    mas_config_dir: &quot;{{ lookup('env', 'MAS_CONFIG_DIR') }}&quot;
+    mas_instance_id: &quot;inst1&quot;
+    mas_config_dir: &quot;/home/david/masconfig&quot;
+    mas_entitlement_key: &quot;{{ lookup('env', 'IBM_ENTITLEMENT_KEY') }}&quot;
 
   roles:
     - ibm.mas_devops.suite_install
@@ -257,7 +259,7 @@
       <span><a href="../suite_dns/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../suite_verify/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../suite_mustgather/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

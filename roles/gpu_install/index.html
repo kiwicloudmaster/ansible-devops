@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://ibm-mas.github.io/ansible-devops/roles/ocp_deprovision/">
+  <link rel="canonical" href="https://ibm-mas.github.io/ansible-devops/roles/gpu_install/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>ocp_deprovision - MAS Devops Collection</title>
+  <title>Gpu install - MAS Devops Collection</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -19,9 +19,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "ocp_deprovision";
-    var mkdocs_page_input_path = "roles/ocp_deprovision.md";
-    var mkdocs_page_url = "/ansible-devops/roles/ocp_deprovision/";
+    var mkdocs_page_name = "Gpu install";
+    var mkdocs_page_input_path = "roles/gpu_install.md";
+    var mkdocs_page_url = "/ansible-devops/roles/gpu_install/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -78,7 +78,7 @@
                     </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
-                <ul class="current">
+                <ul>
                     <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ansible_version_check/">ansible_version_check</a>
@@ -111,21 +111,7 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../mongodb/">mongodb</a>
                     </li>
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">ocp_deprovision</a>
-    <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#role-variables">Role Variables</a>
-        <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#roks-specific-facts">ROKS specific facts</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#fyre-specific-facts">Fyre specific facts</a>
-    </li>
-        </ul>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#example-playbook">Example Playbook</a>
-    </li>
-    <li class="toctree-l2"><a class="reference internal" href="#license">License</a>
-    </li>
-    </ul>
+                    <li class="toctree-l1"><a class="reference internal" href="../ocp_deprovision/">ocp_deprovision</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_login/">ocp_login</a>
                     </li>
@@ -178,15 +164,11 @@
     <li><a href="../..">Docs</a> &raquo;</li>
     
       
-        
-          <li>Roles &raquo;</li>
-        
-      
     
-    <li>ocp_deprovision</li>
+    <li>Gpu install</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ibm-mas/ansible-devops/blob/master/docs/roles/ocp_deprovision.md"
+        <a href="https://github.com/ibm-mas/ansible-devops/blob/master/docs/roles/gpu_install.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -198,31 +180,45 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="ocp_deprovision">ocp_deprovision<a class="headerlink" href="#ocp_deprovision" title="Permanent link"></a></h1>
-<p>Deprovision OCP cluster in Fyre and IBM Cloud</p>
+                <h1 id="gpu_install">gpu_install<a class="headerlink" href="#gpu_install" title="Permanent link"></a></h1>
+<p>This role installs the <strong>NVIDIA Graphical Processing Unit (GPU)</strong> operator and its prerequisite <strong>Node Feature Discovery (NFD)</strong> operator in an IBM Cloud Openshift cluster console. The role first installs the NFD operator and continues with the final step to install the NVIDIA GPU Operator. The NFD Operator is installed using the Red Hat Operators catalog source and the GPU operator is installed using the Certified Operators catalog source. </p>
 <h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link"></a></h2>
+<h3 id="nfd_namespace">nfd_namespace<a class="headerlink" href="#nfd_namespace" title="Permanent link"></a></h3>
+<p>The namespace where the node feature discovery operator will be deployed.</p>
 <ul>
-<li><code>cluster_name</code> Gives a name for the provisioning cluster</li>
-<li><code>cluster_type</code> quickburn | roks</li>
+<li>Environment Variable: <code>NFD_NAMESPACE</code></li>
+<li>Default Value: <code>gpu-operator-resources</code></li>
 </ul>
-<h4 id="roks-specific-facts">ROKS specific facts<a class="headerlink" href="#roks-specific-facts" title="Permanent link"></a></h4>
+<h3 id="nfd_channel">nfd_channel<a class="headerlink" href="#nfd_channel" title="Permanent link"></a></h3>
+<p>The channel to subscribe to for the nfd operator installation and updates. Available channels may be found in the package manifest of nfd operator in openshift.</p>
 <ul>
-<li><code>ibmcloud_apikey</code> APIKey to be used by ibmcloud login comand</li>
+<li>Environment Variable: <code>NFD_CHANNEL</code></li>
+<li>Default Value: <code>stable</code></li>
 </ul>
-<h4 id="fyre-specific-facts">Fyre specific facts<a class="headerlink" href="#fyre-specific-facts" title="Permanent link"></a></h4>
+<h3 id="gpu_namespace">gpu_namespace<a class="headerlink" href="#gpu_namespace" title="Permanent link"></a></h3>
+<p>The namespace where the NVIDIA GPU operator will be deployed. For version 1.8.x, use of single namespace is not supported, therefore namespace is defaulted to <code>openshift-operators</code>. NVIDIA's suggested namespace to use for versions 1.9.0 and above is <code>nvidia-gpu-operator</code> </p>
 <ul>
-<li><code>username</code> Required when cluster type is quickburn</li>
-<li><code>password</code> Required when cluster type is quickburn</li>
+<li>Environment Variable: <code>GPU_NAMESPACE</code></li>
+<li>Default Value: <code>openshift-operators</code></li>
 </ul>
+<h3 id="gpu_channel">gpu_channel<a class="headerlink" href="#gpu_channel" title="Permanent link"></a></h3>
+<p>The channel to subscribe to for the gpu operator installation and updates. Available channels may be found in the package manifest of gpu-operator-certified operator in openshift. </p>
+<ul>
+<li>Environment Variable: <code>GPU_CHANNEL</code></li>
+<li>Default Value: <code>v1.8</code></li>
+</ul>
+<h3 id="gpu_driver_version">gpu_driver_version<a class="headerlink" href="#gpu_driver_version" title="Permanent link"></a></h3>
+<p>The gpu driver version image that needs to be pulled from the gpu repository. It is recommended that the right version if GPU driver is used. The MVI installation documentation, the default version below should be used.</p>
+<ul>
+<li>Environment Variable: <code>GPU_DRIVER_VERSION</code></li>
+<li>Default Value: <code>450.80.02</code></li>
+</ul>
+<p>For more information on the NVIDIA GPU and NFD operators, visit https://docs.nvidia.com/datacenter/cloud-native/gpu-operator/openshift/install-gpu-ocp.html</p>
 <h2 id="example-playbook">Example Playbook<a class="headerlink" href="#example-playbook" title="Permanent link"></a></h2>
 <pre><code class="language-yaml">- hosts: localhost
-  vars:
-    cluster_name: &quot;{{ lookup('env', 'CLUSTER_NAME')}}&quot;
-    cluster_type: roks
-    ibmcloud_apikey: &quot;{{ lookup('env', 'IBMCLOUD_APIKEY') }}&quot;
-    ibmcloud_resourcegroup: &quot;{{ lookup('env', 'IBMCLOUD_RESOURCEGROUP') | default('Default', true) }}&quot;
+  any_errors_fatal: true
   roles:
-    - ibm.mas_devops.ocp_deprovision
+    - ibm.mas_devops.gpu_install
 </code></pre>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link"></a></h2>
 <p>EPL-2.0</p>
@@ -257,10 +253,6 @@
         </span>
     
     
-      <span><a href="../mongodb/" style="color: #fcfcfc">&laquo; Previous</a></span>
-    
-    
-      <span><a href="../ocp_login/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

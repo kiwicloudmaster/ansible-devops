@@ -7,9 +7,9 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
   
-  <link rel="canonical" href="https://ibm-mas.github.io/ansible-devops/roles/airgap_install_case/">
+  <link rel="canonical" href="https://ibm-mas.github.io/ansible-devops/roles/gencfg_sls/">
   <link rel="shortcut icon" href="../../img/favicon.ico">
-  <title>airgap_install_case - MAS Devops Collection</title>
+  <title>gencfg_sls - MAS Devops Collection</title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Lato:400,700|Roboto+Slab:400,700|Inconsolata:400,700" />
 
   <link rel="stylesheet" href="../../css/theme.css" />
@@ -19,9 +19,9 @@
   
   <script>
     // Current page data
-    var mkdocs_page_name = "airgap_install_case";
-    var mkdocs_page_input_path = "roles/airgap_install_case.md";
-    var mkdocs_page_url = "/ansible-devops/roles/airgap_install_case/";
+    var mkdocs_page_name = "gencfg_sls";
+    var mkdocs_page_input_path = "roles/gencfg_sls.md";
+    var mkdocs_page_url = "/ansible-devops/roles/gencfg_sls/";
   </script>
   
   <script src="../../js/jquery-2.1.1.min.js" defer></script>
@@ -63,8 +63,6 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-manage-roks/">Manage on IBM Cloud</a>
                     </li>
                 </ul>
@@ -78,20 +76,46 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul class="current">
-                    <li class="toctree-l1 current"><a class="reference internal current" href="./">airgap_install_case</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cos_setup/">cos_setup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh/">cp4d_db2wh</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_install/">cp4d_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_install_services/">cp4d_install_services</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1 current"><a class="reference internal current" href="./">gencfg_sls</a>
     <ul class="current">
-    <li class="toctree-l2"><a class="reference internal" href="#prereqs">Prereqs</a>
-    </li>
     <li class="toctree-l2"><a class="reference internal" href="#role-variables">Role Variables</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#optional-facts">Optional facts</a>
+    <li class="toctree-l3"><a class="reference internal" href="#mas_instance_id">mas_instance_id</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#mas_config_dir">mas_config_dir</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slscfg_tls_crt">slscfg_tls_crt</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slscfg_url">slscfg_url</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#slscfg_registration_key">slscfg_registration_key</a>
     </li>
         </ul>
     </li>
@@ -101,23 +125,7 @@
     </li>
     </ul>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas_install/">bas_install</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh/">cp4d_db2wh</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_install/">cp4d_install</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_install_services/">cp4d_install_services</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../install_operator/">install_operator</a>
                     </li>
@@ -135,6 +143,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_ocs/">ocp_setup_ocs</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ocp_verify/">ocp_verify</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../sls_install/">sls_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_app_configure/">suite_app_configure</a>
@@ -147,7 +157,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_install/">suite_install</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -175,10 +189,10 @@
         
       
     
-    <li>airgap_install_case</li>
+    <li>gencfg_sls</li>
     <li class="wy-breadcrumbs-aside">
       
-        <a href="https://github.com/ibm-mas/ansible-devops/blob/master/docs/roles/airgap_install_case.md"
+        <a href="https://github.com/ibm-mas/ansible-devops/blob/master/docs/roles/gencfg_sls.md"
           class="icon icon-github"> Edit on GitHub</a>
       
     </li>
@@ -190,50 +204,53 @@
           <div role="main">
             <div class="section">
               
-                <h1 id="airgap_install_case">airgap_install_case<a class="headerlink" href="#airgap_install_case" title="Permanent link"></a></h1>
-<p>This role uses a CASE bundle and the <code>cloudctl</code> tool to run the airgap installation of the CASE operator.</p>
-<h2 id="prereqs">Prereqs<a class="headerlink" href="#prereqs" title="Permanent link"></a></h2>
-<ul>
-<li><code>cloudctl</code> tool must be installed</li>
-</ul>
+                <h1 id="gencfg_sls">gencfg_sls<a class="headerlink" href="#gencfg_sls" title="Permanent link"></a></h1>
+<p>This role is used to generate a SLSCfg Custom Resource that can be applied to Maximo Application Suite manually, or using the <code>suite_config</code> role.  The configuration will be saved to local disk in the directory specified by the <code>mas_config_dir</code> variable.</p>
+<p>If <code>mas_instance_id</code> and <code>mas_config_dir</code> are not both set, then the role will simply print a debug message containing the configuration information.</p>
 <h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link"></a></h2>
+<h3 id="mas_instance_id">mas_instance_id<a class="headerlink" href="#mas_instance_id" title="Permanent link"></a></h3>
+<p>The instance ID of Maximo Application Suite that the SlsCfg configuration will target.  If this or <code>mas_config_dir</code> are not set then the role will not generate a SlsCfg template.</p>
 <ul>
-<li><code>cluster_name</code> Gives a name for the provisioned cluster</li>
-<li><code>cluster_type</code> quickburn</li>
-<li><code>username</code> username for fyre api</li>
-<li><code>password</code> password for fyre api</li>
-<li><code>case_name</code> the name of the CASE bundle to be installed</li>
-<li><code>case_bundle_dir</code> the location of the CASE bundle</li>
-<li><code>case_archive_dir</code> the location to store cloudctl working files, typically <code>./archive</code> under the <code>case_bundle_dir</code></li>
-<li><code>case_inventory_name</code>:` the name of the Setup inventory within the CASE bundle</li>
-<li><code>target_namespace</code> the namespace targetted for airgap installation</li>
-<li><code>catalog_type</code> development | production</li>
+<li>Environment Variable: <code>MAS_INSTANCE_ID</code></li>
+<li>Default Value: None</li>
 </ul>
-<h4 id="optional-facts">Optional facts<a class="headerlink" href="#optional-facts" title="Permanent link"></a></h4>
+<h3 id="mas_config_dir">mas_config_dir<a class="headerlink" href="#mas_config_dir" title="Permanent link"></a></h3>
+<p>Local directory to save the generated SlsCfg resource definition.  This can be used to manually configure a MAS instance to connect to SLS instance, or used as an input to the <a href="../suite_config/">suite_config</a> role. If this or <code>mas_instance_id</code> are not set then the role will not generate a SlsCfg template.</p>
 <ul>
-<li><code>debugs</code>: comma separated string of debug output to print</li>
+<li>Environment Variable: <code>MAS_CONFIG_DIR</code></li>
+<li>Default Value: None</li>
+</ul>
+<h3 id="slscfg_tls_crt">slscfg_tls_crt<a class="headerlink" href="#slscfg_tls_crt" title="Permanent link"></a></h3>
+<p>Required. TODO: Write me</p>
+<ul>
+<li>Environment Variable: None</li>
+<li>Default Value: None</li>
+</ul>
+<h3 id="slscfg_url">slscfg_url<a class="headerlink" href="#slscfg_url" title="Permanent link"></a></h3>
+<p>Required. TODO: Write me</p>
+<ul>
+<li>Environment Variable: <code>SLSCFG_URL</code></li>
+<li>Default Value: None</li>
+</ul>
+<h3 id="slscfg_registration_key">slscfg_registration_key<a class="headerlink" href="#slscfg_registration_key" title="Permanent link"></a></h3>
+<p>Required. TODO: Write me</p>
+<ul>
+<li>Environment Variable: <code>SLSCFG_REGISTRATION_KEY</code></li>
+<li>Default Value: None</li>
 </ul>
 <h2 id="example-playbook">Example Playbook<a class="headerlink" href="#example-playbook" title="Permanent link"></a></h2>
 <pre><code class="language-yaml">- hosts: localhost
+  any_errors_fatal: true
   vars:
-    # General configuration
-    cluster_name: &quot;{{ lookup('env', 'CLUSTER_NAME') }}&quot;
-    cluster_type: quickburn
-    username: &quot;{{ lookup('env', 'FYRE_USERNAME') }}&quot;
-    password: &quot;{{ lookup('env', 'FYRE_APIKEY') }}&quot;
-    # Case config
-    case_name: &quot;{{ lookup('env', 'CASE_NAME') }}&quot;
-    case_bundle_dir: &quot;{{ lookup('env', 'CASE_BUNDLE_DIR') }}&quot;
-    case_archive_dir: &quot;{{ lookup('env', 'CASE_BUNDLE_DIR') }}/archive&quot;
-    case_inventory_name: &quot;{{ lookup('env', 'CASE_INV_NAME') }}&quot;
-    # Airgap control parameters:
-    target_namespace: &quot;mas-{{ lookup('env', 'MAS_INSTANCE_ID') }}-core&quot;
-    catalog_type: development
-    debugs: &quot;_oc_status,installOperatorResult&quot;
+    mas_instance_id: inst1
+    mas_config_dir: /home/me
+
+    slscfg_tls_crt: &quot;{{ lookup('file', '/home/me/sls.crt') }}&quot;
+    slscfg_url: &quot;https://xxx&quot;
+    slscfg_registration_key: &quot;xxx&quot;
 
   roles:
-    - ibm.mas_devops.airgap_install_case
-
+    - ibm.mas_devops.sls_gencfg
 </code></pre>
 <h2 id="license">License<a class="headerlink" href="#license" title="Permanent link"></a></h2>
 <p>EPL-2.0</p>
@@ -268,10 +285,10 @@
         </span>
     
     
-      <span><a href="../../playbooks/bas/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../db2u/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
-      <span><a href="../airgap_mirror_case/" style="color: #fcfcfc">Next &raquo;</a></span>
+      <span><a href="../gencfg_workspace/" style="color: #fcfcfc">Next &raquo;</a></span>
     
   </span>
 </div>

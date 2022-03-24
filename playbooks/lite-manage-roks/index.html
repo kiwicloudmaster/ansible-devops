@@ -63,17 +63,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1 current"><a class="reference internal current" href="./">Manage on IBM Cloud</a>
     <ul class="current">
     <li class="toctree-l2"><a class="reference internal" href="#preparation">Preparation</a>
         <ul>
-    <li class="toctree-l3"><a class="reference internal" href="#copy-your-entitlement-license-key-file">Copy your entitlement license key file</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#create-a-workspace-template">Create a Workspace template</a>
-    </li>
-    <li class="toctree-l3"><a class="reference internal" href="#create-a-bascfg-template">Create a BASCfg template</a>
+    <li class="toctree-l3"><a class="reference internal" href="#prepare-your-entitlement-license-key-file">Prepare your entitlement license key file</a>
     </li>
         </ul>
     </li>
@@ -98,32 +92,36 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_install_case/">airgap_install_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/amqstreams/">amqstreams</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/bas_install/">bas_install</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cos_setup/">cos_setup</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh/">cp4d_db2wh</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_install/">cp4d_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/cp4d_install_services/">cp4d_install_services</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../roles/fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/gencfg_sls/">gencfg_sls</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/install_operator/">install_operator</a>
                     </li>
@@ -141,6 +139,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/ocp_setup_ocs/">ocp_setup_ocs</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/ocp_verify/">ocp_verify</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/sls_install/">sls_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_app_configure/">suite_app_configure</a>
@@ -153,7 +153,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_install/">suite_install</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../roles/suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../../roles/uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -200,108 +204,40 @@
 <p>This master playbook will drive the following playbooks in sequence:</p>
 <ul>
 <li><a href="../ocp/#provision">Provision &amp; setup OCP on IBM Cloud</a> (20-30 minutes)</li>
+<li><a href="../cp4d/#hack-worker-nodes">Update Default Cluster Pull Secret and Reboot Worker Nodes</a> (10 minutes)</li>
 <li>Install dependencies:<ul>
-<li><a href="../dependencies/#install-mongodb-ce">Install MongoDb (Community Edition)</a> (15 minutes)</li>
+<li><a href="../dependencies/#install-mongodb-ce">Install MongoDb (Community Edition)</a> (10 minutes)</li>
+<li><a href="../dependencies/#install-sls">Install SLS</a> (10 minutes)</li>
+<li><a href="../dependencies/#install-uds">Install UDS</a> (35 minutes)</li>
 <li><a href="../cp4d/#install-cp4d">Install Cloud Pak for Data Operator</a> (2 minutes)</li>
-<li>Install Cloud Pak for Data Services<ul>
-<li><a href="../cp4d/#db2-install">Db2 Warehouse</a> with <a href="../cp4d/#db2-install">Db2 Management Console</a> (1-2 hours)</li>
+<li>Install Cloud Pak for Data Services:<ul>
+<li><a href="../cp4d/#db2-install">Db2 Warehouse</a> (1 hour)</li>
 </ul>
 </li>
-<li><a href="../cp4d/#install-db2">Create Db2 Warehouse Cluster</a> (60 minutes)</li>
-<li><a href="../mas/#manage-db2-hack">Additional Db2 configuration for Manage</a></li>
-<li><a href="../bas/#install-bas">Install BAS</a>(30 minutes)</li>
-<li><a href="../sls/#install-sls">Install SLS</a></li>
+<li><a href="../cp4d/#install-db2">Create Db2 Warehouse Cluster</a> (45 minutes)</li>
+<li><a href="../mas/#manage-db2-hack">Additional Db2 configuration for Manage</a> (5 minutes)</li>
 </ul>
 </li>
 <li>Install &amp; configure MAS:<ul>
 <li><a href="../mas/#cloud-internet-services-integration">Configure Cloud Internet Services integration</a> (Optional, 1 minute)</li>
-<li><a href="../mas/#install-mas">Install &amp; configure MAS</a> (20 minutes)</li>
+<li>Generate MAS Workspace Configuration (1 minute)</li>
+<li><a href="../mas/#install-mas">Install &amp; configure MAS</a> (15 minutes)</li>
 </ul>
 </li>
-<li>Install Manage<ul>
-<li><a href="../mas/#install-mas-application">Install application</a></li>
-<li><a href="../mas/#configure-mas-application">Configure workspace</a></li>
+<li>Install Manage application:<ul>
+<li><a href="../mas/#install-mas-application">Install application</a> (10 minutes)</li>
+<li><a href="../mas/#configure-mas-application">Configure workspace</a> (2 hours)</li>
 </ul>
 </li>
 </ul>
-<p>All timings are estimates, see the individual pages for each of these playbooks for more information.</p>
-<div class="admonition warning">
-<p class="admonition-title">Warning</p>
-<p>There is a known problem with Manage v8.1.0 that will result in the system being unusable following a successful deployment.</p>
-<p>Refer to the following technote for more information: <a href="https://www.ibm.com/support/pages/openid-connect-client-returned-status-send401-when-logging-manage-after-installation">"OpenID Connect client returned with status: SEND_401" when logging in to Manage after installation</a></p>
-</div>
+<p>All timings are estimates, see the individual pages for each of these playbooks for more information.  Use this sample playbook as a starting point for installing any MAS application, just customize the application install and configure stages at the end of the playbook.</p>
 <h2 id="preparation">Preparation<a class="headerlink" href="#preparation" title="Permanent link"></a></h2>
 <p>Before you run the playbook you need to configure a few things in your <code>MAS_CONFIG_DIR</code>:</p>
-<h3 id="copy-your-entitlement-license-key-file">Copy your entitlement license key file<a class="headerlink" href="#copy-your-entitlement-license-key-file" title="Permanent link"></a></h3>
-<p>Copy the MAS license key file that you obtained from Rational License Key Server to <code>$MAS_CONFIG_DIR/entitlement.lic</code> (the file must have this exact name).  During the installation of SLS this license file will be automatically bootstrapped into the system.</p>
-<div class="admonition important">
-<p class="admonition-title">Important</p>
-<p>Make sure you set <code>SLS_LICENSE_ID</code> to the correct value.  For full details on what configuration options are available with the SLS install refer to the <a href="../sls/#install-sls">Install SLS</a> topic.</p>
-</div>
-<h3 id="create-a-workspace-template">Create a Workspace template<a class="headerlink" href="#create-a-workspace-template" title="Permanent link"></a></h3>
-<p>If you want the playbook to create a workspace in MAS you must create a file named <code>MAS_CONFIG_DIR/workspace.yml</code> (the exact filename does not matter, as long as the extension is <code>.yml</code> or <code>.yaml</code> it will be processed when configuring MAS) with the following content:</p>
-<pre><code class="language-yaml">apiVersion: core.mas.ibm.com/v1
-kind: Workspace
-metadata:
-  name: &quot;{{instance_id}}-masdev&quot;
-  namespace: &quot;mas-{{instance_id}}-core&quot;
-  labels:
-    mas.ibm.com/instanceId: &quot;{{instance_id}}&quot;
-    mas.ibm.com/workspaceId: &quot;masdev&quot;
-spec:
-  displayName: &quot;MAS Development&quot;
-</code></pre>
-<p>If you do not want to use a workspace called <code>masdev</code> you <strong>must</strong>  customize the playbook, because it is configured by default to install and configure the Manage application in this workspace.</p>
-<h3 id="create-a-bascfg-template">Create a BASCfg template<a class="headerlink" href="#create-a-bascfg-template" title="Permanent link"></a></h3>
-<p>At the moment the playbook does not install and configure BAS automatically, so you must pass in a configuration to an existing BAS installation, do this by creating a file named something like <code>$MAS_CONFIG_DIR/bascfg.yml</code> (the exact name does not matter, as long as the extension is <code>.yml</code> or <code>.yaml</code>) with the following content:</p>
-<pre><code class="language-yaml">---
-apiVersion: v1
-kind: Secret
-type: opaque
-metadata:
-  name: bas-apikey
-  namespace: &quot;mas-{{instance_id}}-core&quot;
-stringData:
-  api_key: &lt;enter your BAS API key here&gt;
----
-apiVersion: config.mas.ibm.com/v1
-kind: BasCfg
-metadata:
-  name: &quot;{{instance_id}}-bas-system&quot;
-  namespace: &quot;mas-{{instance_id}}-core&quot;
-  labels:
-    mas.ibm.com/configScope: system
-    mas.ibm.com/instanceId: &quot;{{instance_id}}&quot;
-spec:
-  displayName: &lt;enter a meaningful (to you) name for the BAS instance&gt;
-  config:
-    url: &lt;enter the URL for the BAS instance here&gt;
-    contact:
-      email: &lt;enter your email here&gt;
-      firstName: &lt;enter your first name&gt;
-      lastName: &lt;enter your last name&gt;
-    credentials:
-      secretName: bas-apikey
-    segmentKey: &lt;enter your BAS segment key&gt;
-  certificates:
-    - alias: part1
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        &lt;enter certificate content for BAS&gt;
-        -----END CERTIFICATE-----
-    - alias: part2
-      crt: |
-        -----BEGIN CERTIFICATE-----
-        &lt;enter certificate content for BAS&gt;
-        -----END CERTIFICATE-----
-</code></pre>
+<h3 id="prepare-your-entitlement-license-key-file">Prepare your entitlement license key file<a class="headerlink" href="#prepare-your-entitlement-license-key-file" title="Permanent link"></a></h3>
+<p>First, set <code>SLS_LICENSE_ID</code> to the correct ID (a 12 character hex string) from your entitlement file, then copy the MAS license key file that you obtained from Rational License Key Server to <code>$MAS_CONFIG_DIR/entitlement.lic</code> (the file must have this exact name).  During the installation of SLS this license file will be automatically bootstrapped into the system.</p>
 <div class="admonition tip">
 <p class="admonition-title">Tip</p>
-<p>If you are unsure how to obtain the correct certifcates for BAS refer to <a href="https://stackoverflow.com/questions/7885785/using-openssl-to-get-the-certificate-from-a-server">this topic in StackOverflow</a> that details how to use openssl to obtain the certificate chain from any server</p>
-</div>
-<div class="admonition note">
-<p class="admonition-title">Note</p>
-<p>We are working hard to get BAS installation and configuration automated, it's unfortunately taking longer than we would have hoped.  See <a href="https://github.com/ibm-mas/ansible-devops/issues/11">issue #11</a> for updates.</p>
+<p>If you do not already have an entitlement file, create a random 12 character hex string and use this as the license ID when requesting your entitlement file from Rational License Key Server.</p>
 </div>
 <h2 id="required-environment-variables">Required environment variables<a class="headerlink" href="#required-environment-variables" title="Permanent link"></a></h2>
 <ul>
@@ -312,6 +248,9 @@ spec:
 <li><code>MAS_CONFIG_DIR</code> Directory where generated config files will be saved (you may also provide pre-generated config files here)</li>
 <li><code>SLS_LICENSE_ID</code> The license ID must match the license file available in <code>$MAS_CONFIG_DIR/entitlement.lic</code></li>
 <li><code>SLS_ENTITLEMENT_KEY</code> Lookup your entitlement key from the <a href="https://myibm.ibm.com/products-services/containerlibrary">IBM Container Library</a></li>
+<li><code>UDS_CONTACT_EMAIL</code> Defines the email for person to contact for BAS</li>
+<li><code>UDS_CONTACT_FIRSTNAME</code> Defines the first name of the person to contact for BAS</li>
+<li><code>UDS_CONTACT_LASTNAME</code> Defines the last name of the person to contact for BAS</li>
 <li><code>CPD_ENTITLEMENT_KEY</code> Lookup your entitlement key from the [IBM Container Library](https://myibm.ibm.com/</li>
 </ul>
 <h2 id="optional-environment-variables">Optional environment variables<a class="headerlink" href="#optional-environment-variables" title="Permanent link"></a></h2>
@@ -324,9 +263,11 @@ spec:
 <li><code>MAS_CATALOG_SOURCE</code> to override the use of the IBM Operator Catalog as the catalog source</li>
 <li><code>MAS_CHANNEL</code> to override the use of the <code>8.x</code> channel</li>
 <li><code>MAS_DOMAIN</code> to set a custom domain for the MAS installation</li>
+<li><code>MAS_UPGRADE_STRATEGY</code> to override the use of Manual upgrade strategy.</li>
 <li><code>MAS_ICR_CP</code> to override the value MAS uses for the IBM Entitled Registry (<code>cp.icr.io/cp</code>)</li>
 <li><code>MAS_ICR_CPOPEN</code> to override the value MAS uses for the IBM Open Registry (<code>icr.io/cpopen</code>)</li>
 <li><code>MAS_ENTITLEMENT_USERNAME</code> to override the username MAS uses to access content in the IBM Entitled Registry</li>
+<li><code>MAS_APPWS_COMPONENTS</code> to customize the application components installed in the Manage Workspace</li>
 <li><code>CIS_CRN</code> to enable integration with IBM Cloud Internet Services (CIS) for DNS &amp; certificate management</li>
 <li><code>CIS_SUBDOMAIN</code> if you want to use a subdomain within your CIS instance</li>
 </ul>
@@ -334,6 +275,12 @@ spec:
 <p class="admonition-title">Tip</p>
 <p><code>MAS_ICR_CP</code>, <code>MAS_ICR_CPOPEN</code>, &amp; <code>MAS_ENTITLEMENT_USERNAME</code> are primarily used when working with pre-release builds in conjunction with <code>W3_USERNAME</code>, <code>ARTIFACTORY_APIKEY</code> and the <code>MAS_CATALOG_SOURCE</code> environment variables.</p>
 </div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+</div>
+<p>By default only the base Manage component is installed.  To customise the components that are enabled use the optional <code>MAS_APPWS_COMPONENTS</code> environment variable, for example to enable Health set it to the following:</p>
+<p><code>export MAS_APPWS_COMPONENTS="{'base':{'version':'latest'}, 'health':{'version':'latest'}}"</code></p>
+<p>To install Health as a Standalone with a specified version, set <code>MAS_APP_ID</code> to health and set <code>MAS_APPWS_COMPONENTS</code> to <code>"{'health':{'version':'x.x.x'}}"</code>. The default version when installing health is set to the <code>latest</code> version.</p>
 <h2 id="release-build">Release build<a class="headerlink" href="#release-build" title="Permanent link"></a></h2>
 <p>The simplest configuration to deploy a release build of IBM Maximo Application Suite (core only) with dependencies is:</p>
 <pre><code class="language-bash"># IBM Cloud ROKS configuration
@@ -352,6 +299,11 @@ export CPD_ENTITLEMENT_KEY=xxx
 # SLS configuration
 export SLS_ENTITLEMENT_KEY=xxx
 export SLS_LICENSE_ID=xxx
+
+# BAS configuration
+export BAS_CONTACT_MAIL=xxx@xxx.com
+export BAS_CONTACT_FIRSTNAME=xxx
+export BAS_CONTACT_LASTNAME=xxx
 
 ansible-playbook playbooks/lite-manage-roks.yml
 </code></pre>
@@ -383,6 +335,11 @@ export CPD_ENTITLEMENT_KEY=xxx
 # SLS configuration
 export SLS_ENTITLEMENT_KEY=xxx
 export SLS_LICENSE_ID=xxx
+
+# BAS configuration
+export BAS_CONTACT_MAIL=xxx@xxx.com
+export BAS_CONTACT_FIRSTNAME=xxx
+export BAS_CONTACT_LASTNAME=xxx
 
 ansible-playbook playbooks/lite-manage-roks.yml
 </code></pre>
@@ -417,7 +374,7 @@ ansible-playbook playbooks/lite-manage-roks.yml
         </span>
     
     
-      <span><a href="../lite-health-roks/" style="color: #fcfcfc">&laquo; Previous</a></span>
+      <span><a href="../lite-core-quickburn/" style="color: #fcfcfc">&laquo; Previous</a></span>
     
     
       <span><a href="../ocp/" style="color: #fcfcfc">Next &raquo;</a></span>

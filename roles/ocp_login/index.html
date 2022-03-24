@@ -63,8 +63,6 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-core-quickburn/">Core only on QuickBurn</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-health-roks/">Health on IBM Cloud</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/lite-manage-roks/">Manage on IBM Cloud</a>
                     </li>
                 </ul>
@@ -78,32 +76,36 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../../playbooks/mas/">MAS Playbooks</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/sls/">SLS Playbook</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../../playbooks/bas/">BAS Playbook</a>
-                    </li>
                 </ul>
                 <p class="caption"><span class="caption-text">Roles</span></p>
                 <ul class="current">
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_install_case/">airgap_install_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_mirror_case/">airgap_mirror_case</a>
-                    </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../airgap_prepare_case/">airgap_prepare_case</a>
-                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../amqstreams/">amqstreams</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../bas_install/">bas_install</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../ansible_version_check/">ansible_version_check</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../appconnect_install/">appconnect_install</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cos_setup/">cos_setup</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh/">cp4d_db2wh</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_backup/">cp4d_db2wh_backup</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_manage_hack/">cp4d_db2wh_manage_hack</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_db2wh_restore/">cp4d_db2wh_restore</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../cp4d_hack_worker_nodes/">cp4d_hack_worker_nodes</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install/">cp4d_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../cp4d_install_services/">cp4d_install_services</a>
                     </li>
-                    <li class="toctree-l1"><a class="reference internal" href="../fvt_simulate_airgap/">fvt_simulate_airgap</a>
+                    <li class="toctree-l1"><a class="reference internal" href="../db2u/">db2u</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_sls/">gencfg_sls</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../gencfg_workspace/">gencfg_workspace</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../install_operator/">install_operator</a>
                     </li>
@@ -118,6 +120,8 @@
     <li class="toctree-l3"><a class="reference internal" href="#roks-specific-facts">ROKS specific facts</a>
     </li>
     <li class="toctree-l3"><a class="reference internal" href="#fyre-specific-facts">Fyre specific facts</a>
+    </li>
+    <li class="toctree-l3"><a class="reference internal" href="#non-cluster_type-specific-facts">Non cluster_type specific facts</a>
     </li>
         </ul>
     </li>
@@ -135,6 +139,8 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../ocp_setup_ocs/">ocp_setup_ocs</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../ocp_verify/">ocp_verify</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../sls_install/">sls_install</a>
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_app_configure/">suite_app_configure</a>
@@ -147,7 +153,11 @@
                     </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_install/">suite_install</a>
                     </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../suite_mustgather/">suite_mustgather</a>
+                    </li>
                     <li class="toctree-l1"><a class="reference internal" href="../suite_verify/">suite_verify</a>
+                    </li>
+                    <li class="toctree-l1"><a class="reference internal" href="../uds_install/">uds_install</a>
                     </li>
                 </ul>
       </div>
@@ -191,7 +201,7 @@
             <div class="section">
               
                 <h1 id="ocp_login">ocp_login<a class="headerlink" href="#ocp_login" title="Permanent link"></a></h1>
-<p>This role provides support to login to a cluster using the <code>oc cli</code></p>
+<p>This role provides support to login to a cluster using the <code>oc cli</code>. If you set <code>ocp_server</code> and <code>ocp_token</code> then a non cluster type specific login is attempted rather than using the cluster_type specific facts (apikey or username/password).</p>
 <h2 id="role-variables">Role Variables<a class="headerlink" href="#role-variables" title="Permanent link"></a></h2>
 <ul>
 <li><code>cluster_name</code> Gives a name for the provisioning cluster</li>
@@ -205,6 +215,11 @@
 <ul>
 <li><code>username</code> Required when cluster type is quickburn</li>
 <li><code>password</code> Required when cluster type is quickburn</li>
+</ul>
+<h4 id="non-cluster_type-specific-facts">Non cluster_type specific facts<a class="headerlink" href="#non-cluster_type-specific-facts" title="Permanent link"></a></h4>
+<ul>
+<li><code>ocp_server</code> The OCP server address to perform oc login against</li>
+<li><code>ocp_token</code> The login token to use for oc login</li>
 </ul>
 <h2 id="example-playbook">Example Playbook<a class="headerlink" href="#example-playbook" title="Permanent link"></a></h2>
 <pre><code class="language-yaml">- hosts: localhost
